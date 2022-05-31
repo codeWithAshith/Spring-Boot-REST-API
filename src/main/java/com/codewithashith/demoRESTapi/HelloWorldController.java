@@ -1,14 +1,20 @@
 package com.codewithashith.demoRESTapi;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class HelloWorldController {
 
-    @RequestMapping(method = RequestMethod.GET, path = "/hello-world")
+    @GetMapping(path = "/hello-world")
     public String helloWorld() {
         return "hello world";
+    }
+    @GetMapping(path = "/hello-world-bean")
+    public HelloWorldBean helloWorldBean() {
+        return new HelloWorldBean("hello world");
+    }
+    @GetMapping(path = "/hello-world-bean/{name}")
+    public HelloWorldBean helloWorldBean(@PathVariable String name) {
+        return new HelloWorldBean(name);
     }
 }
